@@ -25,13 +25,20 @@ def cotizar_fiesta(opcion: int):
 def cotizar_fiesta_gala():
     try:
         personas = int(input("Ingrese número de personas: "))
-        if personas > 1:
-            gala = FiestaGala(personas)
-            gala.calcular_costo_decoracion(decidete("decorar"))
-            gala.set_opcion_saludable(decidete("opción saludable"))
-            total = gala.calcular_costo()
-            print(gala)
-            print(f"Total: {total}")
+        if personas > 0:
+           cumple = FiestaCumpleanios(personas)
+           cumple.calcular_costo_decoracion(decidete("decorar"))
+           if decidete("personalizar pastel"):
+                texto = input("ingrese texto personalizado")
+                cumple.personalizar_pastel(texto)
+                cumple.calcular_costo_pastel()
+           total = cumple.calcular_costo()
+           print(cumple)
+           print(f"total: {total}")
+
+            #total = gala.calcular_costo()
+            #print(gala)
+            #print(f"Total: {total}")
         else:
             print("ERROR.- Debes ingresar un valor mayor a 1")
     except ValueError:
